@@ -185,17 +185,22 @@ const cursoAnoConclusao = function(nomeCurso, data){
 }
 //console.log(cursoAnoConclusao('ds', '2023'))
 
-function filtro(statusA, nCurso, statusD, anoC) {
+function filtroLionSchool(statusA, nCurso, statusD, anoC) {
     let statusAluno = statusA
     let curso = nCurso
     let statusDisciplinas = statusD
     let anoConclusao = anoC
     let informar = false
 
-    if(statusA){}
+    if(statusAluno){
+        informar = alunoStatus(statusAluno)
+    }else if(curso && statusDisciplinas && !anoConclusao){
+        informar = disciplinaStatus(curso, statusDisciplinas)
+    }else if(curso && anoConclusao && !statusDisciplinas){
+        informar = cursoAnoConclusao(curso, anoConclusao)
+    }
+    return informar
 }
-
-console.log(tresFuncoes('Cursando'));
 
 module.exports = {
     getListaDeCursos,
@@ -204,5 +209,6 @@ module.exports = {
     alunoCurso,
     alunoStatus,
     disciplinaStatus,
-    cursoAnoConclusao
+    cursoAnoConclusao,
+    filtroLionSchool
 }

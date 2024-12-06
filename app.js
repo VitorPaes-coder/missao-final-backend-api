@@ -92,10 +92,33 @@ app.get('/v1/lion-school/alunos-matriculados/:curso', cors(), async function(req
 })
 
 //Recupera uma lista de todos os alunos com o status especificado. Finalizado ou Cursando
-app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
-    let dados = request.query.status
+// app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
+//     let dados = request.query.status
 
-    let alunosDoCurso = alunosCursos.alunoStatus(dados)
+//     let alunosDoCurso = alunosCursos.alunoStatus(dados)
+
+//     if(alunosDoCurso){
+//         response.status(200)
+//         response.json(alunosDoCurso)
+//     }else{
+//         response.status(404)
+//         response.json({'status': 404, 'message': 'Nenhum aluno foi localizado.'})
+//     }
+// })
+
+app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
+    let statusAluno = request.query.sta
+    let curso = request.query.nc
+    let statusDisciplinas = request.query.std
+    let anoConclusao = request.query.adc
+    
+    let alunosDoCurso = alunosCursos.filtroLionSchool(statusAluno, curso, statusDisciplinas, anoConclusao)
+    
+    // console.log(alunosDoCurso);
+    // console.log(statusAluno);
+    // console.log(curso);
+    // console.log(statusDisciplinas);
+    // console.log(anoConclusao);
 
     if(alunosDoCurso){
         response.status(200)
@@ -106,93 +129,19 @@ app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, respons
     }
 })
 
-app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
-    let curso = request.query.curso
-    let status = request.query.status
+// app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
+//     let dados = request.query.curso
 
+//     let alunosDoCurso = alunosCursos.alunoCurso(dados)
 
-    let alunosDoCurso = alunosCursos.disciplinaStatus(nomeCurso, dados)
-
-    if(alunosDoCurso){
-        response.status(200)
-        response.json(alunosDoCurso)
-    }else{
-        response.status(404)
-        response.json({'status': 404, 'message': 'Nenhum aluno foi localizado.'})
-    }
-})
-
-
-app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
-    let dados = request.query.curso
-
-    let alunosDoCurso = alunosCursos.alunoCurso(dados)
-
-    if(alunosDoCurso){
-        response.status(200)
-        response.json(alunosDoCurso)
-    }else{
-        response.status(404)
-        response.json({'status': 404, 'message': 'Nenhum aluno foi localizado.'})
-    }
-})
-
-app.get('/v1/estados-cidades/capital/estado', cors(), async function(request, response){
-    let uf = request.query.sigla
-
-    let dados = estadosCidades.getCapitalEstado(uf)
-    if(dados){
-        response.status(200)
-        response.json(dados)
-    }else{
-        response.status(404)
-        response.json({'status': 404, 'message': 'Não foi possível encontrar os dados dos estados.'})
-    }
-
-
-    console.log(uf);
-})
-
-app.get('/v1/estados-cidades/estados/regiao/', cors(), async function(request, response){
-    let uf = request.query.regiao
-
-    let dadosRegiao = estadosCidades.getEstadosRegiao(uf)
-    if(dadosRegiao){
-        response.status(200)
-        response.json(dadosRegiao)
-    }else{
-        response.status(404)
-        response.json({'status': 404, 'message': 'Não foi possível encontrar os dados dos estados.'})
-    }
-})
-
-app.get('/v1/estados-cidades/estados/capitais/pais', cors(), async function(request, response){
-    let dadosCapitais = estadosCidades.getCapitalPais()
-
-    if(dadosCapitais){
-        response.status(200)
-        response.json(dadosCapitais)
-    }else{
-        response.status(404)
-        response.json({'status': 404, 'message': 'Não foi possível encontrar os dados dos estados.'})
-    }
-})
-
-app.get('/v1/estados-cidades/estados/cidades', cors(), async function(request, response){
-    //Recebe o parâmetro(variável) :sigla pera URL
-    let uf = request.query.sigla
-
-    //Chama a funçao para filtrar o estado
-    let dados = estadosCidades.getCidades(uf)
-
-    if(dados){
-        response.status(200)
-        response.json(dados)
-    }else{
-        response.status(404)
-        response.json({'status': 404, 'message': 'Estados não localizado.'})
-    }
-})
+//     if(alunosDoCurso){
+//         response.status(200)
+//         response.json(alunosDoCurso)
+//     }else{
+//         response.status(404)
+//         response.json({'status': 404, 'message': 'Nenhum aluno foi localizado.'})
+//     }
+// })
 
 app.listen('8080', function(){
     console.log('API aguardando requisições...');
