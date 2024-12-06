@@ -185,20 +185,24 @@ const cursoAnoConclusao = function(nomeCurso, data){
 }
 //console.log(cursoAnoConclusao('ds', '2023'))
 
-const tresFuncoes = function (dado1, dado2) {
-    let valor1 = dado1
-    let valor2 = dado2
-    if(valor1 && valor2 === ''){
+const tresFuncoes = function (dado1, dado2, dado3, dado4) {
+    let statusAluno = dado1
+    let curso = dado2
+    let statusDisciplina = dado3
+    let anoConclusao = dado4
+
+    if(statusAluno == true && curso == false && statusDisciplina == false && anoConclusao == false){
         return alunoStatus
-    }else if(valor1 && valor2){
-        if(!isNaN(valor1) || !isNaN(valor2)){
-            return cursoAnoConclusao
-        }
-        else{
-            return disciplinaStatus
-        }
+    }else if(curso == true && statusDisciplina == true ){
+        return cursoAnoConclusao
     }
+    else if(curso == true && anoConclusao == true){
+        return disciplinaStatus
+    }
+
 }
+
+console.log(tresFuncoes('Cursando'));
 
 module.exports = {
     getListaDeCursos,
