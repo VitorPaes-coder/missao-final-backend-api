@@ -185,7 +185,15 @@ const cursoAnoConclusao = function(nomeCurso, data){
 }
 //console.log(cursoAnoConclusao('ds', '2023'))
 
+function filtro(statusA, nCurso, statusD, anoC) {
+    let statusAluno = statusA
+    let curso = nCurso
+    let statusDisciplinas = statusD
+    let anoConclusao = anoC
+    let informar = false
 
+    if(statusA){}
+}
 
 console.log(tresFuncoes('Cursando'));
 

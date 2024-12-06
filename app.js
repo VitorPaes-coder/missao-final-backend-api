@@ -122,22 +122,6 @@ app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, respons
     }
 })
 
-const tresFuncoes = function (dado1, dado2, dado3, dado4) {
-    let statusAluno = dado1
-    let curso = dado2
-    let statusDisciplina = dado3
-    let anoConclusao = dado4
-
-    if(statusAluno == true && curso == false && statusDisciplina == false && anoConclusao == false){
-        return alunoStatus
-    }else if(curso == true && statusDisciplina == true ){
-        return cursoAnoConclusao
-    }
-    else if(curso == true && anoConclusao == true){
-        return disciplinaStatus
-    }
-
-}
 
 app.get('/v1/lion-school/alunos/filtro', cors(), async function(request, response){
     let dados = request.query.curso
